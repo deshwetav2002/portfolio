@@ -1,0 +1,460 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── CSS Variables ───────────────────────────────────────── */
+:root {
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+  --font-body: 'Inter', sans-serif;
+
+  --color-bg:          #050508;
+  --color-surface:     #0a0a12;
+  --color-border:      rgba(0, 245, 255, 0.12);
+  --color-cyan:        #00f5ff;
+  --color-blue:        #0066ff;
+  --color-purple:      #7c3aed;
+  --color-pink:        #ff0080;
+  --color-green:       #00ff88;
+  --color-text:        #e2e8f0;
+  --color-muted:       #64748b;
+  --cursor-size:       20px;
+}
+
+/* ─── Base Reset ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Show default cursor on mobile */
+@media (hover: none) {
+  body { cursor: auto; }
+  .custom-cursor, .cursor-dot { display: none !important; }
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-cyan), var(--color-purple));
+  border-radius: 2px;
+}
+
+/* ─── Selection ───────────────────────────────────────────── */
+::selection {
+  background: rgba(0, 245, 255, 0.25);
+  color: #fff;
+}
+
+/* ─── Custom Cursor ───────────────────────────────────────── */
+.custom-cursor {
+  position: fixed;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border: 1.5px solid var(--color-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.15s ease, border-color 0.2s ease, opacity 0.2s ease;
+  mix-blend-mode: screen;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  background: var(--color-cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: transform 0.05s ease;
+  box-shadow: 0 0 8px var(--color-cyan);
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,245,255,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+
+/* ─── Loading Screen ──────────────────────────────────────── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-purple));
+  border-radius: 1px;
+  box-shadow: 0 0 12px var(--color-cyan);
+}
+
+/* ─── Scroll Progress ─────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-purple), var(--color-pink));
+  z-index: 9999;
+  box-shadow: 0 0 8px var(--color-cyan);
+  transform-origin: left;
+}
+
+/* ─── Glass Card ──────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(0, 245, 255, 0.25);
+  box-shadow: 0 0 30px rgba(0, 245, 255, 0.08);
+}
+
+/* ─── Glow Text ───────────────────────────────────────────── */
+.glow-text {
+  text-shadow:
+    0 0 20px rgba(0, 245, 255, 0.6),
+    0 0 40px rgba(0, 245, 255, 0.3),
+    0 0 80px rgba(0, 245, 255, 0.1);
+}
+
+.glow-text-purple {
+  text-shadow:
+    0 0 20px rgba(124, 58, 237, 0.6),
+    0 0 40px rgba(124, 58, 237, 0.3);
+}
+
+/* ─── Gradient Text ───────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-cyan) 0%, var(--color-blue) 40%, var(--color-purple) 70%, var(--color-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-2 {
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Cyber Grid Background ───────────────────────────────── */
+.cyber-grid-bg {
+  background-image:
+    linear-gradient(rgba(0,245,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Section Styles ──────────────────────────────────────── */
+.section-padding {
+  padding: 120px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding { padding: 80px 0; }
+}
+
+/* ─── Neon Button ─────────────────────────────────────────── */
+.btn-neon {
+  position: relative;
+  border: 1px solid var(--color-cyan);
+  color: var(--color-cyan);
+  background: transparent;
+  padding: 12px 32px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-cyan);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.btn-neon:hover {
+  color: var(--color-bg);
+  box-shadow: 0 0 20px rgba(0,245,255,0.4), 0 0 40px rgba(0,245,255,0.2);
+}
+
+.btn-neon:hover::before { transform: translateX(0); }
+
+.btn-filled {
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-blue));
+  color: var(--color-bg);
+  border: none;
+  padding: 14px 36px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0,245,255,0.2);
+}
+
+.btn-filled:hover {
+  box-shadow: 0 0 40px rgba(0,245,255,0.4), 0 0 80px rgba(0,102,255,0.2);
+  transform: translateY(-2px);
+}
+
+/* ─── Scan Line Overlay ───────────────────────────────────── */
+.scan-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scan-overlay::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,245,255,0.2), transparent);
+  animation: scanLine 6s linear infinite;
+}
+
+/* ─── Profile Photo Glow ──────────────────────────────────── */
+.profile-glow {
+  position: relative;
+}
+
+.profile-glow::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: conic-gradient(from 0deg, var(--color-cyan), var(--color-blue), var(--color-purple), var(--color-pink), var(--color-cyan));
+  border-radius: 50%;
+  animation: spin 4s linear infinite;
+  z-index: -1;
+}
+
+.profile-glow::after {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(circle, rgba(0,245,255,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -2;
+}
+
+/* ─── Tilt Card ───────────────────────────────────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+/* ─── Timeline ────────────────────────────────────────────── */
+.timeline-line {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--color-cyan), var(--color-purple), transparent);
+}
+
+/* ─── Skill Bar ───────────────────────────────────────────── */
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-blue));
+  box-shadow: 0 0 12px rgba(0,245,255,0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ─── Noise Texture Overlay ───────────────────────────────── */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99997;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ─── Nav ──────────────────────────────────────────────────── */
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--color-cyan);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 6px var(--color-cyan);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-cyan);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+/* ─── Easter Egg ──────────────────────────────────────────── */
+.konami-flash {
+  animation: konamiFlash 0.5s ease-in-out 6;
+}
+
+@keyframes konamiFlash {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; filter: hue-rotate(180deg); }
+}
+
+/* ─── Floating Music Button ──────────────────────────────── */
+.music-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: rgba(0,245,255,0.1);
+  border: 1px solid rgba(0,245,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.music-btn:hover {
+  background: rgba(0,245,255,0.2);
+  box-shadow: 0 0 20px rgba(0,245,255,0.3);
+  transform: scale(1.1);
+}
+
+/* ─── Contact Form ────────────────────────────────────────── */
+.form-input {
+  width: 100%;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(0,245,255,0.15);
+  border-radius: 8px;
+  padding: 14px 18px;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.form-input:focus {
+  border-color: rgba(0,245,255,0.5);
+  box-shadow: 0 0 20px rgba(0,245,255,0.08);
+  background: rgba(0,245,255,0.03);
+}
+
+.form-input::placeholder { color: var(--color-muted); }
+
+/* ─── Particle canvas ─────────────────────────────────────── */
+#particle-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Badge ───────────────────────────────────────────────── */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(0,245,255,0.2);
+  background: rgba(0,245,255,0.05);
+  color: var(--color-cyan);
+  transition: all 0.2s ease;
+}
+
+.tech-badge:hover {
+  background: rgba(0,245,255,0.1);
+  border-color: rgba(0,245,255,0.4);
+}
