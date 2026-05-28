@@ -12,7 +12,7 @@ const PROJECTS = [
     title: 'Jarvis — AI Voice Assistant',
     desc: 'A fully functional voice-activated AI assistant powered by OpenAI\'s Arcee-Trinity LLM. Supports web browsing, music playback, real-time news fetching, and NLP-based Q&A.',
     tags: ['Python', 'OpenAI API', 'Speech Recognition', 'TTS', 'Generative AI'],
-    github: 'https://github.com/shwetavde',
+    github: 'https://github.com/deshwetav2002/JARVIS-VOICE-ACTIVATED-VIRTUAL-ASSISTANT',
     demo: null,
     accent: '#00f5ff',
     icon: '🤖',
@@ -23,7 +23,7 @@ const PROJECTS = [
     title: 'YouTube Video Q&A — RAG System',
     desc: 'End-to-end conversational RAG pipeline that ingests YouTube transcripts and answers questions grounded strictly in video content. Features multi-turn memory and hallucination prevention.',
     tags: ['LangChain', 'HuggingFace', 'FAISS', 'Python', 'RAG'],
-    github: 'https://github.com/shwetavde',
+    github: 'https://github.com/deshwetav2002/Youtube-RAG-Chatbot',
     demo: null,
     accent: '#7c3aed',
     icon: '🎬',
@@ -34,7 +34,7 @@ const PROJECTS = [
     title: 'ReplyGenie — AI Auto-Reply Chatbot',
     desc: 'Intelligent chatbot that analyzes conversation history and auto-generates contextual persona-driven responses using GPT-3.5-turbo. Custom AI persona with consistent tone.',
     tags: ['Python', 'GPT-3.5-turbo', 'OpenAI API', 'Prompt Engineering'],
-    github: 'https://github.com/shwetavde',
+    github: 'https://github.com/deshwetav2002/ReplyGenie-AI-Powered-Auto-Reply-Chatbot-',
     demo: null,
     accent: '#ff0080',
     icon: '💬',
@@ -45,7 +45,7 @@ const PROJECTS = [
     title: 'Weather Application',
     desc: 'Responsive, mobile-friendly web app that fetches and displays real-time weather data via REST API. Features dynamic UI updates, error handling, and smooth animations.',
     tags: ['HTML', 'CSS', 'JavaScript', 'REST API'],
-    github: 'https://github.com/shwetavde',
+    github: 'https://github.com/deshwetav2002/Weather-app',
     demo: null,
     accent: '#00ff88',
     icon: '🌤️',
@@ -56,7 +56,7 @@ const PROJECTS = [
     title: 'Customer Segmentation — ML',
     desc: 'Applied K-Means clustering and data preprocessing to segment customers based on purchasing behavior. Includes EDA, cluster visualization, and actionable business insights.',
     tags: ['Python', 'Scikit-learn', 'K-Means', 'Pandas', 'Matplotlib'],
-    github: 'https://github.com/shwetavde',
+    github: 'https://github.com/deshwetav2002/Customer-Segmentation-ML',
     demo: null,
     accent: '#0066ff',
     icon: '📊',
@@ -67,7 +67,7 @@ const PROJECTS = [
     title: 'Portfolio Website',
     desc: 'This premium futuristic portfolio — built with Next.js, Framer Motion, Three.js, and Tailwind CSS. Features cinematic animations, 3D effects, and a cyberpunk aesthetic.',
     tags: ['Next.js', 'Framer Motion', 'Three.js', 'Tailwind CSS', 'GSAP'],
-    github: 'https://github.com/shwetavde',
+    github: 'https://github.com/deshwetav2002/portfolio',
     demo: '#',
     accent: '#00f5ff',
     icon: '🌐',
@@ -212,7 +212,7 @@ export default function ProjectsSection() {
           className="text-center mt-12"
         >
           <a
-            href="https://github.com/shwetavde"
+            href="https://github.com/deshwetav2002"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-neon inline-flex items-center gap-2"
